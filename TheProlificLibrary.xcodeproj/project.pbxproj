@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6705BBEA1B4C5E5E00FA3418 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BBE91B4C5E5E00FA3418 /* main.m */; };
+		6705BBED1B4C5E5E00FA3418 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BBEC1B4C5E5E00FA3418 /* AppDelegate.m */; };
+		6705BBF01B4C5E5E00FA3418 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BBEF1B4C5E5E00FA3418 /* ViewController.m */; };
+		6705BBF31B4C5E5E00FA3418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6705BBF11B4C5E5E00FA3418 /* Main.storyboard */; };
+		6705BBF51B4C5E5E00FA3418 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6705BBF41B4C5E5E00FA3418 /* Images.xcassets */; };
+		6705BBF81B4C5E5E00FA3418 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6705BBF61B4C5E5E00FA3418 /* LaunchScreen.xib */; };
+		6705BC041B4C5E5E00FA3418 /* TheProlificLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC031B4C5E5E00FA3418 /* TheProlificLibraryTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6705BBFE1B4C5E5E00FA3418 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6705BBDC1B4C5E5E00FA3418 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6705BBE31B4C5E5E00FA3418;
+			remoteInfo = TheProlificLibrary;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6705BBE41B4C5E5E00FA3418 /* TheProlificLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheProlificLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6705BBE81B4C5E5E00FA3418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6705BBE91B4C5E5E00FA3418 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6705BBEB1B4C5E5E00FA3418 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6705BBEC1B4C5E5E00FA3418 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6705BBEE1B4C5E5E00FA3418 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6705BBEF1B4C5E5E00FA3418 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6705BBF21B4C5E5E00FA3418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6705BBF41B4C5E5E00FA3418 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6705BBF71B4C5E5E00FA3418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		6705BBFD1B4C5E5E00FA3418 /* TheProlificLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheProlificLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6705BC021B4C5E5E00FA3418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6705BC031B4C5E5E00FA3418 /* TheProlificLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheProlificLibraryTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6705BBE11B4C5E5E00FA3418 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6705BBFA1B4C5E5E00FA3418 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6705BBDB1B4C5E5E00FA3418 = {
+			isa = PBXGroup;
+			children = (
+				6705BBE61B4C5E5E00FA3418 /* TheProlificLibrary */,
+				6705BC001B4C5E5E00FA3418 /* TheProlificLibraryTests */,
+				6705BBE51B4C5E5E00FA3418 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6705BBE51B4C5E5E00FA3418 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6705BBE41B4C5E5E00FA3418 /* TheProlificLibrary.app */,
+				6705BBFD1B4C5E5E00FA3418 /* TheProlificLibraryTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6705BBE61B4C5E5E00FA3418 /* TheProlificLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				6705BBEB1B4C5E5E00FA3418 /* AppDelegate.h */,
+				6705BBEC1B4C5E5E00FA3418 /* AppDelegate.m */,
+				6705BBEE1B4C5E5E00FA3418 /* ViewController.h */,
+				6705BBEF1B4C5E5E00FA3418 /* ViewController.m */,
+				6705BBF11B4C5E5E00FA3418 /* Main.storyboard */,
+				6705BBF41B4C5E5E00FA3418 /* Images.xcassets */,
+				6705BBF61B4C5E5E00FA3418 /* LaunchScreen.xib */,
+				6705BBE71B4C5E5E00FA3418 /* Supporting Files */,
+			);
+			path = TheProlificLibrary;
+			sourceTree = "<group>";
+		};
+		6705BBE71B4C5E5E00FA3418 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6705BBE81B4C5E5E00FA3418 /* Info.plist */,
+				6705BBE91B4C5E5E00FA3418 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6705BC001B4C5E5E00FA3418 /* TheProlificLibraryTests */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC031B4C5E5E00FA3418 /* TheProlificLibraryTests.m */,
+				6705BC011B4C5E5E00FA3418 /* Supporting Files */,
+			);
+			path = TheProlificLibraryTests;
+			sourceTree = "<group>";
+		};
+		6705BC011B4C5E5E00FA3418 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC021B4C5E5E00FA3418 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6705BBE31B4C5E5E00FA3418 /* TheProlificLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6705BC071B4C5E5E00FA3418 /* Build configuration list for PBXNativeTarget "TheProlificLibrary" */;
+			buildPhases = (
+				6705BBE01B4C5E5E00FA3418 /* Sources */,
+				6705BBE11B4C5E5E00FA3418 /* Frameworks */,
+				6705BBE21B4C5E5E00FA3418 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TheProlificLibrary;
+			productName = TheProlificLibrary;
+			productReference = 6705BBE41B4C5E5E00FA3418 /* TheProlificLibrary.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6705BBFC1B4C5E5E00FA3418 /* TheProlificLibraryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6705BC0A1B4C5E5E00FA3418 /* Build configuration list for PBXNativeTarget "TheProlificLibraryTests" */;
+			buildPhases = (
+				6705BBF91B4C5E5E00FA3418 /* Sources */,
+				6705BBFA1B4C5E5E00FA3418 /* Frameworks */,
+				6705BBFB1B4C5E5E00FA3418 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6705BBFF1B4C5E5E00FA3418 /* PBXTargetDependency */,
+			);
+			name = TheProlificLibraryTests;
+			productName = TheProlificLibraryTests;
+			productReference = 6705BBFD1B4C5E5E00FA3418 /* TheProlificLibraryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6705BBDC1B4C5E5E00FA3418 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Raghav Sai Cheedalla";
+				TargetAttributes = {
+					6705BBE31B4C5E5E00FA3418 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					6705BBFC1B4C5E5E00FA3418 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 6705BBE31B4C5E5E00FA3418;
+					};
+				};
+			};
+			buildConfigurationList = 6705BBDF1B4C5E5E00FA3418 /* Build configuration list for PBXProject "TheProlificLibrary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6705BBDB1B4C5E5E00FA3418;
+			productRefGroup = 6705BBE51B4C5E5E00FA3418 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6705BBE31B4C5E5E00FA3418 /* TheProlificLibrary */,
+				6705BBFC1B4C5E5E00FA3418 /* TheProlificLibraryTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6705BBE21B4C5E5E00FA3418 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6705BBF31B4C5E5E00FA3418 /* Main.storyboard in Resources */,
+				6705BBF81B4C5E5E00FA3418 /* LaunchScreen.xib in Resources */,
+				6705BBF51B4C5E5E00FA3418 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6705BBFB1B4C5E5E00FA3418 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6705BBE01B4C5E5E00FA3418 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6705BBF01B4C5E5E00FA3418 /* ViewController.m in Sources */,
+				6705BBED1B4C5E5E00FA3418 /* AppDelegate.m in Sources */,
+				6705BBEA1B4C5E5E00FA3418 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6705BBF91B4C5E5E00FA3418 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6705BC041B4C5E5E00FA3418 /* TheProlificLibraryTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6705BBFF1B4C5E5E00FA3418 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6705BBE31B4C5E5E00FA3418 /* TheProlificLibrary */;
+			targetProxy = 6705BBFE1B4C5E5E00FA3418 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6705BBF11B4C5E5E00FA3418 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6705BBF21B4C5E5E00FA3418 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6705BBF61B4C5E5E00FA3418 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6705BBF71B4C5E5E00FA3418 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6705BC051B4C5E5E00FA3418 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6705BC061B4C5E5E00FA3418 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6705BC081B4C5E5E00FA3418 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TheProlificLibrary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6705BC091B4C5E5E00FA3418 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TheProlificLibrary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6705BC0B1B4C5E5E00FA3418 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TheProlificLibraryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TheProlificLibrary.app/TheProlificLibrary";
+			};
+			name = Debug;
+		};
+		6705BC0C1B4C5E5E00FA3418 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TheProlificLibraryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TheProlificLibrary.app/TheProlificLibrary";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6705BBDF1B4C5E5E00FA3418 /* Build configuration list for PBXProject "TheProlificLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6705BC051B4C5E5E00FA3418 /* Debug */,
+				6705BC061B4C5E5E00FA3418 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6705BC071B4C5E5E00FA3418 /* Build configuration list for PBXNativeTarget "TheProlificLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6705BC081B4C5E5E00FA3418 /* Debug */,
+				6705BC091B4C5E5E00FA3418 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6705BC0A1B4C5E5E00FA3418 /* Build configuration list for PBXNativeTarget "TheProlificLibraryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6705BC0B1B4C5E5E00FA3418 /* Debug */,
+				6705BC0C1B4C5E5E00FA3418 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6705BBDC1B4C5E5E00FA3418 /* Project object */;
+}
