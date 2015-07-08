@@ -12,17 +12,18 @@
 #import "ServiceManager.h"
 #import "ServiceURLProvider.h"
 
-@interface BookDetailViewController ()<ServiceProtocol>
+@interface BookDetailViewController ()<ServiceProtocol,UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UILabel *lblAuthor;
-@property (weak, nonatomic) IBOutlet UILabel *lblPublisher;
-@property (weak, nonatomic) IBOutlet UILabel *lblCategories;
-@property (weak, nonatomic) IBOutlet UILabel *lblLastCheckedOutBy;
+@property (weak, nonatomic) IBOutlet UILabel        *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel        *lblAuthor;
+@property (weak, nonatomic) IBOutlet UILabel        *lblPublisher;
+@property (weak, nonatomic) IBOutlet UILabel        *lblCategories;
+@property (weak, nonatomic) IBOutlet UILabel        *lblLastCheckedOutBy;
 
+@property (nonatomic, strong) ServiceManager        *manager;
+@property (nonatomic, strong) NSString              *name;
 
-
-@property (nonatomic, strong) ServiceManager *manager;
+@property BOOL checkedOutBool;
 
 @end
 
@@ -31,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavigationBar];
+    self.checkedOutBool = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -44,12 +46,18 @@
     self.manager = [ServiceManager defaultManager];
     self.manager.serviceDelegate = self;
     NSString *url = [ServiceURLProvider getURLForServiceWithKey:self.bookUrl];
-    [self.manager serviceCallWithURL:url andParameters:nil];
+    if(!self.checkedOutBool)
+        [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"GET"];
+    else
+    {
+        NSDictionary *requestParameters = [self prepareParameters];
+        [self.manager serviceCallWithURL:url andParameters:requestParameters andRequestMethod:@"PUT"];
+    }
 }
 
 - (void)setupNavigationBar
 {
-    UIBarButtonItem *rightBarButtonItemShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(shareBook)];
+    UIBarButtonItem *rightBarButtonItemShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareBook)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItemShare;
 }
 
@@ -58,6 +66,7 @@
     
 }
 
+#pragma mark - Utility methods
 - (void)showBookDetails:(NSArray *)bookArray
 {
     Book *book = [bookArray objectAtIndex:0];
@@ -66,13 +75,43 @@
     self.lblPublisher.text = book.publisher;
     self.lblLastCheckedOutBy.text = book.lastCheckedOutBy;
     self.lblCategories.text = book.categories;
-    [self.view setNeedsDisplay];
+}
+
+- (NSDictionary *)prepareParameters
+{
+    NSMutableDictionary *preparedParameters = [[NSMutableDictionary alloc]init];
+    [preparedParameters setObject:self.name forKey:@"lastCheckedOutBy"];
+    return preparedParameters;
+}
+
+#pragma mark - Action methods
+- (IBAction)checkoutBook:(id)sender
+{
+    UIAlertView *promptUsernameAlertView = [[UIAlertView alloc] initWithTitle:@"Checkout Name"
+                                                                      message:@"Please Enter Your Name"
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                            otherButtonTitles:@"OK", nil];
+    promptUsernameAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [promptUsernameAlertView show];
+}
+
+#pragma mark - UIAlertViewDelegate methods
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    self.name = [[alertView textFieldAtIndex:0] text];
+    if(buttonIndex == 1)
+    {
+        self.checkedOutBool = YES;
+        [self getBook];
+    }
 }
 
 #pragma mark - ServiceProtocol methods
 - (void)serviceCallCompletedWithResponseObject:(id)response
 {
     NSDictionary *data = (NSDictionary *)response;
+    NSLog(@"%@",data);
     NSMutableArray *dataArray = [[NSMutableArray alloc]init];
     [dataArray addObject:data];
     [self showBookDetails:[BooksParser getBookObjects:dataArray]];

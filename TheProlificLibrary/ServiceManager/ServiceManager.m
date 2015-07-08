@@ -63,10 +63,12 @@
     }];
 }
 
-- (void)serviceCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params
+- (void)serviceCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params andRequestMethod:(NSString *)requestMethod
 {
-    if(params)
+    if(params && [requestMethod isEqualToString:@"POST"])
         [self postRequestCallWithURL:URL andParameters:params];
+    else if (params && [requestMethod isEqualToString:@"PUT"])
+        [self putRequestCallWithURL:URL andParameters:params];
     else
         [self getRequestCallWithURL:URL];
 }
@@ -80,6 +82,15 @@
     }];
 }
 
+
+- (void)putRequestCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params
+{
+    [self.manager PUT:URL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.serviceDelegate serviceCallCompletedWithError:error];
+    }];
+}
 
 
 @end

@@ -12,6 +12,8 @@
 @interface BooksParser ()
 
 + (Book *)bookParser:(NSDictionary *)bookDetails;
++ (NSString *)parseDate:(NSString *)dateString;
+
 
 @end
 
@@ -38,12 +40,17 @@
     book.bookID = [[bookDetails objectForKey:@"id"] integerValue];
     
     if([bookDetails objectForKey:@"lastCheckedOut"] != [NSNull null])
-        book.lastCheckedOut = [bookDetails objectForKey:@"lastCheckedOut"];
+    {
+        
+        book.lastCheckedOut = [self parseDate:[bookDetails objectForKey:@"lastCheckedOut"]];
+    }
     else
         book.lastCheckedOut = nil;
     
     if([bookDetails objectForKey:@"lastCheckedOutBy"] != [NSNull null])
-        book.lastCheckedOutBy = [bookDetails objectForKey:@"lastCheckedOutBy"];
+    {
+        book.lastCheckedOutBy = [NSString stringWithFormat:@"%@ @ %@",[bookDetails objectForKey:@"lastCheckedOutBy"],book.lastCheckedOut];
+    }
     else
         book.lastCheckedOutBy = @"";
     book.publisher = [bookDetails objectForKey:@"publisher"];
@@ -53,5 +60,18 @@
     return book;
 }
 
++ (NSString *)parseDate:(NSString *)dateString
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *date = [dateFormat dateFromString:dateString];
+    NSLog(@"%@",[dateFormat dateFromString:dateString]);
+    [dateFormat setDateStyle:NSDateFormatterLongStyle];
+    [dateFormat setTimeStyle:NSDateFormatterShortStyle];
+    
+    NSLog(@"%@",[dateFormat stringFromDate:date]);
+    return [dateFormat stringFromDate:date];
+}
 
 @end

@@ -109,58 +109,61 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="The Core iOS Developer's Cookbook" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXG-So-GBG" userLabel="Book Title">
-                                <rect key="frame" x="16" y="85" width="288" height="43"/>
+                                <rect key="frame" x="16" y="49" width="288" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Erica Sadun" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMQ-tw-uaO" userLabel="BookAuthor">
-                                <rect key="frame" x="16" y="136" width="274" height="17"/>
+                                <rect key="frame" x="16" y="100" width="274" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publisher:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aw6-we-db4" userLabel="BookPublisher">
-                                <rect key="frame" x="16" y="161" width="64.5" height="17"/>
+                                <rect key="frame" x="16" y="125" width="64.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Programmatic Programming" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvb-wo-Dbs" userLabel="BookPublisherDescription">
-                                <rect key="frame" x="88" y="161" width="210.5" height="17"/>
+                                <rect key="frame" x="88" y="125" width="210.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bab-WO-mcs">
-                                <rect key="frame" x="16" y="194" width="34" height="17"/>
+                                <rect key="frame" x="16" y="158" width="34" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="iOS, Core" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGh-AT-jSm">
-                                <rect key="frame" x="58" y="194" width="232" height="17"/>
+                                <rect key="frame" x="58" y="158" width="232" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Checked Out:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgF-c8-74f">
-                                <rect key="frame" x="16" y="219" width="274" height="17"/>
+                                <rect key="frame" x="16" y="183" width="274" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Michele @ July 7, 2015 7:00pm" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56W-zR-eS8">
-                                <rect key="frame" x="16" y="244" width="274" height="17"/>
+                                <rect key="frame" x="16" y="208" width="274" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAl-Eh-rzo">
-                                <rect key="frame" x="16" y="293" width="288" height="30"/>
+                                <rect key="frame" x="16" y="257" width="288" height="30"/>
                                 <state key="normal" title="Checkout">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="checkoutBook:" destination="Cdf-gh-x04" eventType="touchUpInside" id="fnd-t3-WMX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -190,7 +193,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="56W-zR-eS8" secondAttribute="trailing" constant="14" id="pIN-4E-RaF"/>
                             <constraint firstItem="AgF-c8-74f" firstAttribute="top" secondItem="bab-WO-mcs" secondAttribute="bottom" constant="8" id="tyl-S5-KDW"/>
                             <constraint firstItem="EGh-AT-jSm" firstAttribute="leading" secondItem="bab-WO-mcs" secondAttribute="trailing" constant="8" id="wIb-3N-R3y"/>
-                            <constraint firstItem="WXG-So-GBG" firstAttribute="top" secondItem="2q9-7u-Vcp" secondAttribute="bottom" constant="65" id="zHv-a4-pWm"/>
+                            <constraint firstItem="WXG-So-GBG" firstAttribute="top" secondItem="2q9-7u-Vcp" secondAttribute="bottom" constant="29" id="zHv-a4-pWm"/>
                         </constraints>
                     </view>
                     <connections>

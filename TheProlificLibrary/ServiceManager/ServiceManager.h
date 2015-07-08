@@ -21,8 +21,7 @@
 
 + (ServiceManager *)defaultManager;
 
-- (void)serviceCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params;
-- (void)getRequestCallWithURL:(NSString *)URL;
+- (void)serviceCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params andRequestMethod:(NSString *)requestMethod;
 
 @property (nonatomic,weak) id<ServiceProtocol> serviceDelegate;
 

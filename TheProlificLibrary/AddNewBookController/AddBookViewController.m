@@ -101,7 +101,6 @@
 }
 
 #pragma mark - Utility methods
-
 - (void)donePressed
 {
     if(self.txtBookTitle.text.length > 0 || self.txtAuthor.text.length > 0 || self.txtCategories.text.length > 0 || self.txtPublisher.text.length > 0)
@@ -129,15 +128,34 @@
     self.manager = [ServiceManager defaultManager];
     self.manager.serviceDelegate = self;
     NSString *url = [ServiceURLProvider getURLForServiceWithKey:kBooks];
-    [self.manager serviceCallWithURL:url andParameters:requestParameters];
+    [self.manager serviceCallWithURL:url andParameters:requestParameters andRequestMethod:@"POST"];
 }
 
 - (void)checkFields
 {
+    NSString *fieldsMissing = @"";
     if(!self.textBookAuthorFlag)
+    {
         self.txtAuthor.backgroundColor = [UIColor redColor];
+        fieldsMissing = [NSString stringWithFormat:@"%@ %@",fieldsMissing,@"Author"];
+    }
     if(!self.textBookTitleFlag)
+    {
         self.txtBookTitle.backgroundColor = [UIColor redColor];
+        fieldsMissing = [NSString stringWithFormat:@"%@ %@",fieldsMissing,@"Book Title"];
+    }
+    [self showFieldsAlert:fieldsMissing];
+    
+}
+
+- (void)showFieldsAlert:(NSString *)fieldsMissing
+{
+    UIAlertView *fieldsAlertView = [[UIAlertView alloc] initWithTitle:@"Required Fields"
+                                                              message:fieldsMissing
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil, nil];
+    [fieldsAlertView show];
 }
 
 - (NSDictionary *)prepareParameters

@@ -57,7 +57,7 @@
     self.manager = [ServiceManager defaultManager];
     self.manager.serviceDelegate = self;
     NSString *url = [ServiceURLProvider getURLForServiceWithKey:kBooks];
-    [self.manager serviceCallWithURL:url andParameters:nil];
+    [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"GET"];
 }
 
 
