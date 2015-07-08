@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BEE52F2045368B43C971823 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C52803753DF97AFEE5C42FE6 /* libPods.a */; };
 		6705BBEA1B4C5E5E00FA3418 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BBE91B4C5E5E00FA3418 /* main.m */; };
 		6705BBED1B4C5E5E00FA3418 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BBEC1B4C5E5E00FA3418 /* AppDelegate.m */; };
-		6705BBF01B4C5E5E00FA3418 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BBEF1B4C5E5E00FA3418 /* ViewController.m */; };
+		6705BBF01B4C5E5E00FA3418 /* BookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BBEF1B4C5E5E00FA3418 /* BookListViewController.m */; };
 		6705BBF31B4C5E5E00FA3418 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6705BBF11B4C5E5E00FA3418 /* Main.storyboard */; };
 		6705BBF51B4C5E5E00FA3418 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6705BBF41B4C5E5E00FA3418 /* Images.xcassets */; };
 		6705BBF81B4C5E5E00FA3418 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6705BBF61B4C5E5E00FA3418 /* LaunchScreen.xib */; };
 		6705BC041B4C5E5E00FA3418 /* TheProlificLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC031B4C5E5E00FA3418 /* TheProlificLibraryTests.m */; };
+		6705BC131B4C8A7000FA3418 /* CustomBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC121B4C8A7000FA3418 /* CustomBookCell.m */; };
+		6705BC171B4CB8B200FA3418 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC161B4CB8B200FA3418 /* BookDetailViewController.m */; };
+		6705BC1B1B4CC1C200FA3418 /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC1A1B4CC1C200FA3418 /* AddBookViewController.m */; };
+		6705BC201B4CCDDE00FA3418 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC1F1B4CCDDE00FA3418 /* ServiceManager.m */; };
+		6705BC251B4CD09D00FA3418 /* ServiceURLProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC241B4CD09D00FA3418 /* ServiceURLProvider.m */; };
+		6705BC2B1B4CD47400FA3418 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC2A1B4CD47400FA3418 /* Book.m */; };
+		6705BC2F1B4CD67C00FA3418 /* BooksParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6705BC2E1B4CD67C00FA3418 /* BooksParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +35,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3605CDCB4C4AB65079EE503B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4F5982986DFD350116A7C4AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6705BBE41B4C5E5E00FA3418 /* TheProlificLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheProlificLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6705BBE81B4C5E5E00FA3418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6705BBE91B4C5E5E00FA3418 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6705BBEB1B4C5E5E00FA3418 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6705BBEC1B4C5E5E00FA3418 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6705BBEE1B4C5E5E00FA3418 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6705BBEF1B4C5E5E00FA3418 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6705BBEE1B4C5E5E00FA3418 /* BookListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BookListViewController.h; path = ../BookListViewController.h; sourceTree = "<group>"; };
+		6705BBEF1B4C5E5E00FA3418 /* BookListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BookListViewController.m; path = ../BookListViewController.m; sourceTree = "<group>"; };
 		6705BBF21B4C5E5E00FA3418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6705BBF41B4C5E5E00FA3418 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6705BBF71B4C5E5E00FA3418 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6705BBFD1B4C5E5E00FA3418 /* TheProlificLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheProlificLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6705BC021B4C5E5E00FA3418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6705BC031B4C5E5E00FA3418 /* TheProlificLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheProlificLibraryTests.m; sourceTree = "<group>"; };
+		6705BC111B4C8A7000FA3418 /* CustomBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBookCell.h; sourceTree = "<group>"; };
+		6705BC121B4C8A7000FA3418 /* CustomBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBookCell.m; sourceTree = "<group>"; };
+		6705BC151B4CB8B200FA3418 /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		6705BC161B4CB8B200FA3418 /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
+		6705BC191B4CC1C200FA3418 /* AddBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookViewController.h; sourceTree = "<group>"; };
+		6705BC1A1B4CC1C200FA3418 /* AddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookViewController.m; sourceTree = "<group>"; };
+		6705BC1E1B4CCDDE00FA3418 /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
+		6705BC1F1B4CCDDE00FA3418 /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
+		6705BC231B4CD09D00FA3418 /* ServiceURLProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceURLProvider.h; sourceTree = "<group>"; };
+		6705BC241B4CD09D00FA3418 /* ServiceURLProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceURLProvider.m; sourceTree = "<group>"; };
+		6705BC261B4CD0C600FA3418 /* SystemLevelConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemLevelConstants.h; sourceTree = "<group>"; };
+		6705BC291B4CD47400FA3418 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		6705BC2A1B4CD47400FA3418 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		6705BC2D1B4CD67C00FA3418 /* BooksParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksParser.h; sourceTree = "<group>"; };
+		6705BC2E1B4CD67C00FA3418 /* BooksParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksParser.m; sourceTree = "<group>"; };
+		C52803753DF97AFEE5C42FE6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BEE52F2045368B43C971823 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +87,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25095016490261F3944E9B03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C52803753DF97AFEE5C42FE6 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3126913F8B184538954C0D00 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3605CDCB4C4AB65079EE503B /* Pods.debug.xcconfig */,
+				4F5982986DFD350116A7C4AC /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6705BBDB1B4C5E5E00FA3418 = {
 			isa = PBXGroup;
 			children = (
 				6705BBE61B4C5E5E00FA3418 /* TheProlificLibrary */,
 				6705BC001B4C5E5E00FA3418 /* TheProlificLibraryTests */,
 				6705BBE51B4C5E5E00FA3418 /* Products */,
+				3126913F8B184538954C0D00 /* Pods */,
+				25095016490261F3944E9B03 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,10 +127,15 @@
 		6705BBE61B4C5E5E00FA3418 /* TheProlificLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				6705BC2C1B4CD65E00FA3418 /* Parser */,
+				6705BC221B4CCE1600FA3418 /* Constants */,
+				6705BC211B4CCDF900FA3418 /* Model */,
+				6705BC1D1B4CCDB300FA3418 /* ServiceManager */,
+				6705BC181B4CC1AF00FA3418 /* AddNewBookController */,
+				6705BC141B4CB89100FA3418 /* BookDetailedView */,
+				6705BC101B4C8A3300FA3418 /* TableBook */,
 				6705BBEB1B4C5E5E00FA3418 /* AppDelegate.h */,
 				6705BBEC1B4C5E5E00FA3418 /* AppDelegate.m */,
-				6705BBEE1B4C5E5E00FA3418 /* ViewController.h */,
-				6705BBEF1B4C5E5E00FA3418 /* ViewController.m */,
 				6705BBF11B4C5E5E00FA3418 /* Main.storyboard */,
 				6705BBF41B4C5E5E00FA3418 /* Images.xcassets */,
 				6705BBF61B4C5E5E00FA3418 /* LaunchScreen.xib */,
@@ -119,6 +170,72 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6705BC101B4C8A3300FA3418 /* TableBook */ = {
+			isa = PBXGroup;
+			children = (
+				6705BBEE1B4C5E5E00FA3418 /* BookListViewController.h */,
+				6705BBEF1B4C5E5E00FA3418 /* BookListViewController.m */,
+				6705BC111B4C8A7000FA3418 /* CustomBookCell.h */,
+				6705BC121B4C8A7000FA3418 /* CustomBookCell.m */,
+			);
+			path = TableBook;
+			sourceTree = "<group>";
+		};
+		6705BC141B4CB89100FA3418 /* BookDetailedView */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC151B4CB8B200FA3418 /* BookDetailViewController.h */,
+				6705BC161B4CB8B200FA3418 /* BookDetailViewController.m */,
+			);
+			path = BookDetailedView;
+			sourceTree = "<group>";
+		};
+		6705BC181B4CC1AF00FA3418 /* AddNewBookController */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC191B4CC1C200FA3418 /* AddBookViewController.h */,
+				6705BC1A1B4CC1C200FA3418 /* AddBookViewController.m */,
+			);
+			path = AddNewBookController;
+			sourceTree = "<group>";
+		};
+		6705BC1D1B4CCDB300FA3418 /* ServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC1E1B4CCDDE00FA3418 /* ServiceManager.h */,
+				6705BC1F1B4CCDDE00FA3418 /* ServiceManager.m */,
+			);
+			path = ServiceManager;
+			sourceTree = "<group>";
+		};
+		6705BC211B4CCDF900FA3418 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC291B4CD47400FA3418 /* Book.h */,
+				6705BC2A1B4CD47400FA3418 /* Book.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6705BC221B4CCE1600FA3418 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC231B4CD09D00FA3418 /* ServiceURLProvider.h */,
+				6705BC241B4CD09D00FA3418 /* ServiceURLProvider.m */,
+				6705BC261B4CD0C600FA3418 /* SystemLevelConstants.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		6705BC2C1B4CD65E00FA3418 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				6705BC2D1B4CD67C00FA3418 /* BooksParser.h */,
+				6705BC2E1B4CD67C00FA3418 /* BooksParser.m */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +243,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6705BC071B4C5E5E00FA3418 /* Build configuration list for PBXNativeTarget "TheProlificLibrary" */;
 			buildPhases = (
+				16C15A3F7C704DD403165BC3 /* Check Pods Manifest.lock */,
 				6705BBE01B4C5E5E00FA3418 /* Sources */,
 				6705BBE11B4C5E5E00FA3418 /* Frameworks */,
 				6705BBE21B4C5E5E00FA3418 /* Resources */,
+				7683FD1D9FEC3666BD84B9C8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,14 +333,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		16C15A3F7C704DD403165BC3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7683FD1D9FEC3666BD84B9C8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6705BBE01B4C5E5E00FA3418 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6705BBF01B4C5E5E00FA3418 /* ViewController.m in Sources */,
+				6705BBF01B4C5E5E00FA3418 /* BookListViewController.m in Sources */,
+				6705BC2B1B4CD47400FA3418 /* Book.m in Sources */,
+				6705BC171B4CB8B200FA3418 /* BookDetailViewController.m in Sources */,
+				6705BC131B4C8A7000FA3418 /* CustomBookCell.m in Sources */,
 				6705BBED1B4C5E5E00FA3418 /* AppDelegate.m in Sources */,
+				6705BC2F1B4CD67C00FA3418 /* BooksParser.m in Sources */,
 				6705BBEA1B4C5E5E00FA3418 /* main.m in Sources */,
+				6705BC201B4CCDDE00FA3418 /* ServiceManager.m in Sources */,
+				6705BC251B4CD09D00FA3418 /* ServiceURLProvider.m in Sources */,
+				6705BC1B1B4CC1C200FA3418 /* AddBookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +504,7 @@
 		};
 		6705BC081B4C5E5E00FA3418 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3605CDCB4C4AB65079EE503B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheProlificLibrary/Info.plist;
@@ -355,6 +515,7 @@
 		};
 		6705BC091B4C5E5E00FA3418 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F5982986DFD350116A7C4AC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TheProlificLibrary/Info.plist;
@@ -416,6 +577,7 @@
 				6705BC091B4C5E5E00FA3418 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6705BC0A1B4C5E5E00FA3418 /* Build configuration list for PBXNativeTarget "TheProlificLibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +586,7 @@
 				6705BC0C1B4C5E5E00FA3418 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
