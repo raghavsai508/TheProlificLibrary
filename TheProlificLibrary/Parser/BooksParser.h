@@ -10,6 +10,6 @@
 
 @interface BooksParser : NSObject
 
-+ (NSArray *)getBookObjects:(NSArray *)responseBooks;
++ (NSMutableArray *)getBookObjects:(NSArray *)responseBooks;
 
 @end

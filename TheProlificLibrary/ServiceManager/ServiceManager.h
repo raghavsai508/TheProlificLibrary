@@ -12,7 +12,7 @@
 
 @optional
 
-- (void)serviceCallCompletedWithResponseObject:(id)response;
+- (void)serviceCallCompletedWithResponseObject:(id)response withResponseCode:(NSInteger)responseStatusCode;
 - (void)serviceCallCompletedWithError:(NSError *)error;
 
 @end

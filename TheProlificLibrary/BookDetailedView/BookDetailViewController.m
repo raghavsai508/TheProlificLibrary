@@ -32,13 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavigationBar];
+    [self getBook];
     self.checkedOutBool = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self getBook];
 }
 
 - (void)getBook
@@ -64,6 +64,21 @@
 - (void)shareBook
 {
     
+    UIActivityViewController *controller =
+    [[UIActivityViewController alloc]
+     initWithActivityItems:@[self.lblTitle.text, self.lblAuthor.text, self.lblPublisher.text, self.lblCategories.text]
+     applicationActivities:nil];
+    
+    controller.excludedActivityTypes = @[UIActivityTypePostToWeibo,
+                                         UIActivityTypePrint,
+                                         UIActivityTypeCopyToPasteboard,
+                                         UIActivityTypeAssignToContact,
+                                         UIActivityTypeSaveToCameraRoll,
+                                         UIActivityTypeAddToReadingList,
+                                         UIActivityTypePostToTencentWeibo,
+                                         UIActivityTypeAirDrop];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark - Utility methods
@@ -108,13 +123,16 @@
 }
 
 #pragma mark - ServiceProtocol methods
-- (void)serviceCallCompletedWithResponseObject:(id)response
+- (void)serviceCallCompletedWithResponseObject:(id)response withResponseCode:(NSInteger)responseStatusCode
 {
-    NSDictionary *data = (NSDictionary *)response;
-    NSLog(@"%@",data);
-    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
-    [dataArray addObject:data];
-    [self showBookDetails:[BooksParser getBookObjects:dataArray]];
+    if(responseStatusCode == 200)
+    {
+        NSDictionary *data = (NSDictionary *)response;
+        NSLog(@"%@",data);
+        NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+        [dataArray addObject:data];
+        [self showBookDetails:[BooksParser getBookObjects:dataArray]];
+    }
 }
 
 - (void)serviceCallCompletedWithError:(NSError *)error

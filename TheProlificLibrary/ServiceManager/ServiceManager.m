@@ -56,8 +56,10 @@
 
 - (void)getRequestCallWithURL:(NSString *)URL
 {
-    [self.manager GET:URL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject];
+    [self.manager GET:URL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSInteger responseStatuCode = operation.response.statusCode;
+        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject withResponseCode:responseStatuCode] ;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.serviceDelegate serviceCallCompletedWithError:error];
     }];
@@ -69,6 +71,8 @@
         [self postRequestCallWithURL:URL andParameters:params];
     else if (params && [requestMethod isEqualToString:@"PUT"])
         [self putRequestCallWithURL:URL andParameters:params];
+    else if ([requestMethod isEqualToString:@"DELETE"])
+        [self deleteRequestCallWithURL:URL];
     else
         [self getRequestCallWithURL:URL];
 }
@@ -76,7 +80,8 @@
 - (void)postRequestCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params
 {
     [self.manager POST:URL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject];
+        NSInteger responseStatuCode = operation.response.statusCode;
+        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject withResponseCode:responseStatuCode];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.serviceDelegate serviceCallCompletedWithError:error];
     }];
@@ -86,11 +91,23 @@
 - (void)putRequestCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params
 {
     [self.manager PUT:URL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject];
+        NSInteger responseStatuCode = operation.response.statusCode;
+        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject withResponseCode:responseStatuCode];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.serviceDelegate serviceCallCompletedWithError:error];
     }];
 }
+
+- (void)deleteRequestCallWithURL:(NSString *)URL
+{
+    [self.manager DELETE:URL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSInteger responseStatuCode = operation.response.statusCode;
+        [self.serviceDelegate serviceCallCompletedWithResponseObject:responseObject withResponseCode:responseStatuCode];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.serviceDelegate serviceCallCompletedWithError:error];
+    }];
+}
+
 
 
 @end

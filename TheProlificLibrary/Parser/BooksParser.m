@@ -19,7 +19,7 @@
 
 @implementation BooksParser
 
-+ (NSArray *)getBookObjects:(NSArray *)responseBooks
++ (NSMutableArray *)getBookObjects:(NSArray *)responseBooks
 {
     NSMutableArray *booksArray = [[NSMutableArray alloc] init];
     for(NSDictionary *bookDict in responseBooks)

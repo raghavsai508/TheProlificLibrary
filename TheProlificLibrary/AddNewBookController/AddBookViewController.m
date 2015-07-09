@@ -179,12 +179,14 @@
 }
 
 #pragma mark - ServiceProtocol methods
-- (void)serviceCallCompletedWithResponseObject:(id)response
+- (void)serviceCallCompletedWithResponseObject:(id)response withResponseCode:(NSInteger)responseStatusCode
 {
-    NSDictionary *data = (NSDictionary *)response;
-    NSLog(@"%@",data);
-    [self dismissViewController];
-    
+    if(responseStatusCode == 200)
+    {
+        NSDictionary *data = (NSDictionary *)response;
+        NSLog(@"%@",data);
+        [self dismissViewController];
+    }
 }
 
 - (void)serviceCallCompletedWithError:(NSError *)error

@@ -22,7 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITableView        *bookListTableView;
 
 @property (nonatomic, strong) ServiceManager            *manager;
-@property (nonatomic, strong) NSArray                   *booksListArray;
+@property (nonatomic, strong) NSMutableArray            *booksListArray;
+@property (nonatomic, strong) NSIndexPath               *deleteIndexPath;
 
 @end
 
@@ -31,11 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavigationBar];
+    self.bookListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.bookListTableView.allowsMultipleSelectionDuringEditing = NO;
     [self getBookList];
 }
 
@@ -84,6 +87,17 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self deleteBook:indexPath];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
 
 #pragma mark - UITableViewDelegate methods
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(7_0)
@@ -108,7 +122,7 @@
 
 
 - (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath {
-    static CustomBookCell *sizingCell = nil;
+    static CustomBookCell *sizingCell;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sizingCell = [self.bookListTableView dequeueReusableCellWithIdentifier:@"CustomBookCell"];
@@ -131,15 +145,33 @@
     return size.height + 1.0f; 
 }
 
+- (void)deleteBook:(NSIndexPath *)indexPath
+{
+    Book *book = [self.booksListArray objectAtIndex:indexPath.row];
+    self.deleteIndexPath = indexPath;
+    NSString *url = [ServiceURLProvider getURLForServiceWithKey:book.url];
+    self.manager = [ServiceManager defaultManager];
+    self.manager.serviceDelegate = self;
+    [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"DELETE"];
+}
+
 
 #pragma mark - ServiceProtocol methods
-- (void)serviceCallCompletedWithResponseObject:(id)response
+- (void)serviceCallCompletedWithResponseObject:(id)response withResponseCode:(NSInteger)responseStatusCode
 {
-    NSArray *data = (NSArray *)response;
-    self.booksListArray = [BooksParser getBookObjects:data];
+    if(responseStatusCode == 200)
+    {
+        NSArray *data = (NSArray *)response;
+        self.booksListArray = [BooksParser getBookObjects:data];
+        NSLog(@"%@",data);
+        [self.bookListTableView reloadData];
+    }
+    else if (responseStatusCode == 204)
+    {
+        [self.booksListArray removeObjectAtIndex:self.deleteIndexPath.row];
+        [self.bookListTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.deleteIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
     
-    NSLog(@"%@",data);
-    [self.bookListTableView reloadData];
 }
 
 - (void)serviceCallCompletedWithError:(NSError *)error
