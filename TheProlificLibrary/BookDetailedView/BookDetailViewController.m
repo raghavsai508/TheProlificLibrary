@@ -11,6 +11,7 @@
 #import "Book.h"
 #import "ServiceManager.h"
 #import "ServiceURLProvider.h"
+#import "MBProgressHUD.h"
 
 @interface BookDetailViewController ()<ServiceProtocol,UIAlertViewDelegate>
 
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel        *lblPublisher;
 @property (weak, nonatomic) IBOutlet UILabel        *lblCategories;
 @property (weak, nonatomic) IBOutlet UILabel        *lblLastCheckedOutBy;
+@property (weak, nonatomic) IBOutlet UIButton       *btnCheckOut;
 
 @property (nonatomic, strong) ServiceManager        *manager;
 @property (nonatomic, strong) NSString              *name;
@@ -31,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self designCheckOutButton];
     [self setupNavigationBar];
     [self getBook];
     self.checkedOutBool = NO;
@@ -41,8 +44,28 @@
     [super viewDidAppear:animated];
 }
 
+#pragma mark - UI Design and Initial Setup Methods
+
+-(void)designCheckOutButton
+{
+    self.btnCheckOut.layer.cornerRadius = 10.0f;
+    self.btnCheckOut.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.btnCheckOut.layer.borderWidth = 1.0f;
+}
+
+- (void)setupNavigationBar
+{
+    UIBarButtonItem *rightBarButtonItemShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareBook)];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItemShare;
+    self.navigationItem.title = @"Detail";
+}
+
+
+#pragma mark - Utility methods
+
 - (void)getBook
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.manager = [ServiceManager defaultManager];
     self.manager.serviceDelegate = self;
     NSString *url = [ServiceURLProvider getURLForServiceWithKey:self.bookUrl];
@@ -55,10 +78,14 @@
     }
 }
 
-- (void)setupNavigationBar
+- (void)showBookDetails:(NSArray *)bookArray
 {
-    UIBarButtonItem *rightBarButtonItemShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareBook)];
-    self.navigationItem.rightBarButtonItem = rightBarButtonItemShare;
+    Book *book = [bookArray objectAtIndex:0];
+    self.lblTitle.text = book.title;
+    self.lblAuthor.text = book.author;
+    self.lblPublisher.text = book.publisher;
+    self.lblLastCheckedOutBy.text = book.lastCheckedOutBy;
+    self.lblCategories.text = book.categories;
 }
 
 - (void)shareBook
@@ -81,22 +108,20 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-#pragma mark - Utility methods
-- (void)showBookDetails:(NSArray *)bookArray
-{
-    Book *book = [bookArray objectAtIndex:0];
-    self.lblTitle.text = book.title;
-    self.lblAuthor.text = book.author;
-    self.lblPublisher.text = book.publisher;
-    self.lblLastCheckedOutBy.text = book.lastCheckedOutBy;
-    self.lblCategories.text = book.categories;
-}
-
 - (NSDictionary *)prepareParameters
 {
     NSMutableDictionary *preparedParameters = [[NSMutableDictionary alloc]init];
     [preparedParameters setObject:self.name forKey:@"lastCheckedOutBy"];
     return preparedParameters;
+}
+
+- (void)disableProgressHUD
+{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
 }
 
 #pragma mark - Action methods
@@ -132,6 +157,7 @@
         NSMutableArray *dataArray = [[NSMutableArray alloc]init];
         [dataArray addObject:data];
         [self showBookDetails:[BooksParser getBookObjects:dataArray]];
+        [self disableProgressHUD];
     }
 }
 

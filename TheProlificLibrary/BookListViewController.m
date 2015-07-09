@@ -15,6 +15,7 @@
 #import "Constants/SystemLevelConstants.h"
 #import "Parser/BooksParser.h"
 #import "Book.h"
+#import "MBProgressHUD.h"
 
 
 @interface BookListViewController ()<UITableViewDelegate,UITableViewDataSource,ServiceProtocol>
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) ServiceManager            *manager;
 @property (nonatomic, strong) NSMutableArray            *booksListArray;
 @property (nonatomic, strong) NSIndexPath               *deleteIndexPath;
+@property BOOL                                          deleteAllBooksFlag;
 
 @end
 
@@ -33,12 +35,18 @@
     [super viewDidLoad];
     [self setupNavigationBar];
     self.bookListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.bookListTableView.allowsMultipleSelectionDuringEditing = NO;
+    self.deleteAllBooksFlag = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.bookListTableView.allowsMultipleSelectionDuringEditing = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self getBookList];
 }
 
@@ -46,23 +54,13 @@
 {
     UIBarButtonItem *leftBarButtonAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBook)];
     self.navigationItem.leftBarButtonItem = leftBarButtonAdd;
+    
+    UIBarButtonItem *rightBarButtonDelete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteAllBooks)];
+    self.navigationItem.rightBarButtonItem = rightBarButtonDelete;
+    
+    self.navigationItem.title = @"Books";
+    
 }
-
-- (void)addBook
-{
-    AddBookViewController *addBookViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddBookViewController"];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addBookViewController];
-    [self.navigationController presentViewController:navController animated:YES completion:nil];
-}
-
-- (void)getBookList
-{
-    self.manager = [ServiceManager defaultManager];
-    self.manager.serviceDelegate = self;
-    NSString *url = [ServiceURLProvider getURLForServiceWithKey:kBooks];
-    [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"GET"];
-}
-
 
 #pragma mark - UITableViewDataSource methods
 
@@ -73,6 +71,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(self.booksListArray.count > 0)
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    else
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     return self.booksListArray.count;
 }
 
@@ -120,6 +122,33 @@
     [self.navigationController pushViewController:bookDetailViewController animated:YES];
 }
 
+#pragma mark - Utility methods
+
+- (void)addBook
+{
+    AddBookViewController *addBookViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddBookViewController"];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addBookViewController];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)deleteAllBooks
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.deleteAllBooksFlag = YES;
+    self.manager = [ServiceManager defaultManager];
+    self.manager.serviceDelegate = self;
+    NSString *url = [ServiceURLProvider getURLForServiceWithKey:kBooksClean];
+    [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"DELETE"];
+}
+
+- (void)getBookList
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.manager = [ServiceManager defaultManager];
+    self.manager.serviceDelegate = self;
+    NSString *url = [ServiceURLProvider getURLForServiceWithKey:kBooks];
+    [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"GET"];
+}
 
 - (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath {
     static CustomBookCell *sizingCell;
@@ -147,6 +176,7 @@
 
 - (void)deleteBook:(NSIndexPath *)indexPath
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     Book *book = [self.booksListArray objectAtIndex:indexPath.row];
     self.deleteIndexPath = indexPath;
     NSString *url = [ServiceURLProvider getURLForServiceWithKey:book.url];
@@ -155,19 +185,39 @@
     [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"DELETE"];
 }
 
+- (void)disableProgressHUD
+{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+}
 
 #pragma mark - ServiceProtocol methods
 - (void)serviceCallCompletedWithResponseObject:(id)response withResponseCode:(NSInteger)responseStatusCode
 {
     if(responseStatusCode == 200)
     {
-        NSArray *data = (NSArray *)response;
-        self.booksListArray = [BooksParser getBookObjects:data];
-        NSLog(@"%@",data);
-        [self.bookListTableView reloadData];
+        if(!self.deleteAllBooksFlag)
+        {
+            NSArray *data = (NSArray *)response;
+            self.booksListArray = [BooksParser getBookObjects:data];
+            NSLog(@"%@",data);
+            [self.bookListTableView reloadData];
+            [self disableProgressHUD];
+        }
+        else
+        {
+            [self disableProgressHUD];
+            self.deleteAllBooksFlag = NO;
+            [self.booksListArray removeAllObjects];
+            [self.bookListTableView reloadData];
+        }
     }
     else if (responseStatusCode == 204)
     {
+        [self disableProgressHUD];
         [self.booksListArray removeObjectAtIndex:self.deleteIndexPath.row];
         [self.bookListTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.deleteIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     }

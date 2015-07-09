@@ -12,5 +12,6 @@
 
 
 #define kBooks @"/books"
+#define kBooksClean @"/clean"
 
 @end

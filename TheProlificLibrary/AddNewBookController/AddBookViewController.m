@@ -6,10 +6,13 @@
 //  Copyright (c) 2015 Raghav Sai Cheedalla. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "AddBookViewController.h"
 #import "ServiceManager.h"
 #import "ServiceURLProvider.h"
 #import "SystemLevelConstants.h"
+#import "MBProgressHUD.h"
 
 @interface AddBookViewController ()<ServiceProtocol,UITextFieldDelegate,UIAlertViewDelegate>
 
@@ -17,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField    *txtAuthor;
 @property (weak, nonatomic) IBOutlet UITextField    *txtPublisher;
 @property (weak, nonatomic) IBOutlet UITextField    *txtCategories;
+@property (weak, nonatomic) IBOutlet UIButton       *btnSubmit;
 
 @property (nonatomic, strong) ServiceManager        *manager;
 @property (nonatomic, strong) NSMutableDictionary   *requestParameters;
@@ -40,6 +44,51 @@
 {
     self.textBookTitleFlag = NO;
     self.textBookAuthorFlag = NO;
+    [self setupTextFields];
+    [self designSubmitButton];
+}
+
+- (void)setupTextFields
+{
+    [self designTitleField];
+    [self designAuthorField];
+    [self designCategoriesField];
+    [self designPublisherField];
+}
+
+- (void)designTitleField
+{
+    self.txtBookTitle.layer.cornerRadius = 5.0f;
+    self.txtBookTitle.layer.borderWidth = 2.0f;
+    self.txtBookTitle.borderStyle = UITextBorderStyleRoundedRect;
+}
+
+- (void)designAuthorField
+{
+    self.txtAuthor.layer.cornerRadius = 5.0f;
+    self.txtAuthor.layer.borderWidth = 2.0f;
+    self.txtAuthor.borderStyle = UITextBorderStyleRoundedRect;
+}
+
+- (void)designCategoriesField
+{
+    self.txtCategories.layer.cornerRadius = 5.0f;
+    self.txtCategories.layer.borderWidth = 2.0f;
+    self.txtCategories.borderStyle = UITextBorderStyleRoundedRect;
+}
+
+- (void)designPublisherField
+{
+    self.txtPublisher.layer.cornerRadius = 5.0f;
+    self.txtPublisher.layer.borderWidth = 2.0f;
+    self.txtPublisher.borderStyle = UITextBorderStyleRoundedRect;
+}
+
+- (void)designSubmitButton
+{
+    self.btnSubmit.layer.cornerRadius = 10.0f;
+    self.btnSubmit.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.btnSubmit.layer.borderWidth = 1.0f;
 }
 
 - (void)setupDelegates
@@ -52,10 +101,23 @@
 
 - (void)setupNavigationBar
 {
-    UIBarButtonItem *rightBarButtonItemDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
+    UIBarButtonItem* rightBarButtonItemDone = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonItem]];
     self.navigationItem.rightBarButtonItem = rightBarButtonItemDone;
+    self.navigationItem.title = @"Add Book";
+    
 }
 
+- (UIButton *)rightBarButtonItem
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTitle:@"Done" forState:UIControlStateNormal];
+    button.layer.cornerRadius = 5.0f;
+    button.layer.borderColor = [[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] CGColor];
+    button.layer.borderWidth = 1.0f;
+    [button setFrame:CGRectMake(0, 0, 60, 30)];
+    [button addTarget:self action:@selector(donePressed) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
 
 #pragma mark - UITextFieldDelegate methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -124,6 +186,7 @@
 
 - (void)addBookToLibrary
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSDictionary *requestParameters = [self prepareParameters];
     self.manager = [ServiceManager defaultManager];
     self.manager.serviceDelegate = self;
@@ -168,6 +231,15 @@
     return prepareParameters;
 }
 
+- (void)disableProgressHUD
+{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+}
+
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -183,6 +255,7 @@
 {
     if(responseStatusCode == 200)
     {
+        [self disableProgressHUD];
         NSDictionary *data = (NSDictionary *)response;
         NSLog(@"%@",data);
         [self dismissViewController];
