@@ -65,6 +65,7 @@
 		6705BC2A1B4CD47400FA3418 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		6705BC2D1B4CD67C00FA3418 /* BooksParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksParser.h; sourceTree = "<group>"; };
 		6705BC2E1B4CD67C00FA3418 /* BooksParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksParser.m; sourceTree = "<group>"; };
+		67CC2A401B50498500B2B7CC /* BookListViewController_BookTableViewPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewController_BookTableViewPrivate.h; sourceTree = "<group>"; };
 		C52803753DF97AFEE5C42FE6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,6 +128,7 @@
 		6705BBE61B4C5E5E00FA3418 /* TheProlificLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				67CC2A3F1B50494E00B2B7CC /* TestFiles */,
 				6705BC2C1B4CD65E00FA3418 /* Parser */,
 				6705BC221B4CCE1600FA3418 /* Constants */,
 				6705BC211B4CCDF900FA3418 /* Model */,
@@ -234,6 +236,14 @@
 				6705BC2E1B4CD67C00FA3418 /* BooksParser.m */,
 			);
 			path = Parser;
+			sourceTree = "<group>";
+		};
+		67CC2A3F1B50494E00B2B7CC /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				67CC2A401B50498500B2B7CC /* BookListViewController_BookTableViewPrivate.h */,
+			);
+			path = TestFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

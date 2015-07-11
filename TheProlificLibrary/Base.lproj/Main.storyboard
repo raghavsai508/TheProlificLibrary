@@ -37,6 +37,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OeM-3m-K6r">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="M4S-d9-rPS">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="vXZ-lx-hvc" id="Yza-3E-wbw"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomBookCell" rowHeight="80" id="Rwi-Do-OhH" customClass="CustomBookCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -90,9 +98,21 @@
                     <navigationItem key="navigationItem" id="po0-hJ-okN"/>
                     <connections>
                         <outlet property="bookListTableView" destination="OeM-3m-K6r" id="lgq-KU-TZK"/>
+                        <outlet property="searchBar" destination="M4S-d9-rPS" id="Nu3-nT-eJB"/>
+                        <outlet property="searchController" destination="TIw-G1-d0l" id="OyU-eU-zGF"/>
+                        <outlet property="searchDisplayController" destination="TIw-G1-d0l" id="3tF-ig-ukT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="TIw-G1-d0l">
+                    <connections>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="4rV-yl-gC2"/>
+                        <outlet property="searchBar" destination="M4S-d9-rPS" id="iiW-cK-K0y"/>
+                        <outlet property="searchContentsController" destination="vXZ-lx-hvc" id="Ysm-Yp-xR3"/>
+                        <outlet property="searchResultsDataSource" destination="vXZ-lx-hvc" id="a81-sy-dwu"/>
+                        <outlet property="searchResultsDelegate" destination="vXZ-lx-hvc" id="m4g-ce-6jG"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="112" y="-42"/>
         </scene>

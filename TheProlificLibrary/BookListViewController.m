@@ -18,12 +18,17 @@
 #import "MBProgressHUD.h"
 
 
-@interface BookListViewController ()<UITableViewDelegate,UITableViewDataSource,ServiceProtocol>
+@interface BookListViewController ()<ServiceProtocol>
 
 @property (weak, nonatomic) IBOutlet UITableView        *bookListTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar        *searchBar;
+@property (strong, nonatomic) IBOutlet UISearchDisplayController *searchController;
+
+
 
 @property (nonatomic, strong) ServiceManager            *manager;
 @property (nonatomic, strong) NSMutableArray            *booksListArray;
+@property (nonatomic, strong) NSArray                   *searchBooksArray;
 @property (nonatomic, strong) NSIndexPath               *deleteIndexPath;
 @property BOOL                                          deleteAllBooksFlag;
 
@@ -37,6 +42,7 @@
     self.bookListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.bookListTableView.allowsMultipleSelectionDuringEditing = NO;
     self.deleteAllBooksFlag = NO;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -50,6 +56,8 @@
     [self getBookList];
 }
 
+
+
 - (void)setupNavigationBar
 {
     UIBarButtonItem *leftBarButtonAdd = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBook)];
@@ -60,6 +68,17 @@
     
     self.navigationItem.title = @"Books";
     
+}
+
+#pragma mark - UISearchDisplayDelegate methods
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -75,15 +94,27 @@
         self.navigationItem.rightBarButtonItem.enabled = YES;
     else
         self.navigationItem.rightBarButtonItem.enabled = NO;
-    return self.booksListArray.count;
+    
+    if(tableView == self.searchController.searchResultsTableView)
+        return self.searchBooksArray.count;
+    else
+        return self.booksListArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *reusableCellIdentifier = @"CustomBookCell";
-    CustomBookCell *cell  = [tableView dequeueReusableCellWithIdentifier:reusableCellIdentifier forIndexPath:indexPath];
-    Book *book = [self.booksListArray objectAtIndex:indexPath.row];
+    CustomBookCell *cell  = [self.bookListTableView dequeueReusableCellWithIdentifier:reusableCellIdentifier];
+    if (cell == nil) {
+        cell = [[CustomBookCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reusableCellIdentifier];
+    }
+    
+    Book *book;
+    if(tableView == self.searchController.searchResultsTableView)
+        book = [self.searchBooksArray objectAtIndex:indexPath.row];
+    else
+        book = [self.booksListArray objectAtIndex:indexPath.row];
     [cell configureCell:book.title andAuthor:book.author];
     
     return cell;
@@ -110,19 +141,29 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self heightForBasicCellAtIndexPath:indexPath];
+    return [self heightForBasicCellAtIndexPath:indexPath withTableView:tableView];
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookDetailViewController *bookDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
-    Book *book = [self.booksListArray objectAtIndex:indexPath.row];
+    BookDetailViewController *bookDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BookDetailViewController"];;
+    Book *book;
+    if(tableView == self.searchController.searchResultsTableView)
+        book = [self.searchBooksArray objectAtIndex:indexPath.row];
+    else
+        book = [self.booksListArray objectAtIndex:indexPath.row];
     bookDetailViewController.bookUrl = book.url;
     [self.navigationController pushViewController:bookDetailViewController animated:YES];
 }
 
 #pragma mark - Utility methods
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
+    self.searchBooksArray = [self.booksListArray filteredArrayUsingPredicate:resultPredicate];
+}
 
 - (void)addBook
 {
@@ -150,14 +191,18 @@
     [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"GET"];
 }
 
-- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView
+{
     static CustomBookCell *sizingCell;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sizingCell = [self.bookListTableView dequeueReusableCellWithIdentifier:@"CustomBookCell"];
     });
-    
-    Book *book = [self.booksListArray objectAtIndex:indexPath.row];
+    Book *book;
+    if(tableView == self.searchController.searchResultsTableView)
+        book = [self.searchBooksArray objectAtIndex:indexPath.row];
+    else
+        book = [self.booksListArray objectAtIndex:indexPath.row];
     [sizingCell configureCell:book.title andAuthor:book.author];
     return [self calculateHeightForConfiguredSizingCell:sizingCell];
 }
