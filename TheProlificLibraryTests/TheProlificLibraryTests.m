@@ -131,6 +131,7 @@
 }
 
 #pragma mark - ServiceManager Singleton check
+/* This method tests wheter the ServiceManager is a shared Object or not. */
 - (void)testServiceManagerSingleton
 {
     XCTAssertNotNil([self getSharedInstance]);
