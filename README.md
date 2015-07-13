@@ -1,8 +1,6 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-**Quick Summary**
+###**Quick Summary**###
 This Application is a book library where user can add or remove a book from the library. User can also search and apply filters to the book library. The app even shows details of each book and the user can even checkout the book as well as share the book via social media. 
 
 ### How do I get set up? ###
