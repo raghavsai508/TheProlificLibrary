@@ -6,16 +6,19 @@ This README would normally document whatever steps are necessary to get your app
 This Application is a book library where user can add or remove a book from the library. User can also search and apply filters to the book library. The app even shows details of each book and the user can even checkout the book as well as share the book via social media. 
 
 ### How do I get set up? ###
-
 ** # Summary of set up #**
-
-**BookListViewController**
+###**BookListViewController**###
 * This is the app's first screen where it shows a list of books if available on the server if not empty.
 * User can add a book to the library by pressing the add button on top left.
 * User can delete a book by swiping from right to left.
 * User apply filters to the list of books and search for a book.
 * User can see details of a book when tapped on any book.
 * User can pull the table to refresh in-order to retrieve new books.
+###**AddBookViewController**###
+This screen shows a list of fields for adding a new book to the library.
+The mandatory fields are Book Title and Book Author. If they are not filled it throws an alert for missing fields.
+It has other fields like categories(tags) and publisher.
+
  
 * Configuration
 * Dependencies
