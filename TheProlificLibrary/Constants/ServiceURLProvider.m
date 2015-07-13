@@ -12,11 +12,11 @@
 
 @implementation ServiceURLProvider
 
+/* This method constructs the URL using the base url. */
 +(NSString *)getURLForServiceWithKey:(NSString *)key
 {
     NSString *returnString = [NSString stringWithFormat:@"%@%@",base_url,key];
     return returnString;
 }
-
 
 @end

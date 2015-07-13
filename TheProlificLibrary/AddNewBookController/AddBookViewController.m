@@ -48,6 +48,7 @@
     [self designSubmitButton];
 }
 
+/* This method setups the necessary UI for the textfields. */
 - (void)setupTextFields
 {
     [self designTitleField];
@@ -56,6 +57,7 @@
     [self designPublisherField];
 }
 
+/* This method is reponsible for setting up the title text field. */
 - (void)designTitleField
 {
     self.txtBookTitle.layer.cornerRadius = 5.0f;
@@ -63,6 +65,7 @@
     self.txtBookTitle.borderStyle = UITextBorderStyleRoundedRect;
 }
 
+/* This method is reponsible for setting up the author text field. */
 - (void)designAuthorField
 {
     self.txtAuthor.layer.cornerRadius = 5.0f;
@@ -70,6 +73,7 @@
     self.txtAuthor.borderStyle = UITextBorderStyleRoundedRect;
 }
 
+/* This method is reponsible for setting up the categories text field. */
 - (void)designCategoriesField
 {
     self.txtCategories.layer.cornerRadius = 5.0f;
@@ -77,6 +81,7 @@
     self.txtCategories.borderStyle = UITextBorderStyleRoundedRect;
 }
 
+/* This method is reponsible for setting up the publisher text field. */
 - (void)designPublisherField
 {
     self.txtPublisher.layer.cornerRadius = 5.0f;
@@ -84,6 +89,7 @@
     self.txtPublisher.borderStyle = UITextBorderStyleRoundedRect;
 }
 
+/* This method is reponsible for setting up the submit button. */
 - (void)designSubmitButton
 {
     self.btnSubmit.layer.cornerRadius = 10.0f;
@@ -91,6 +97,7 @@
     self.btnSubmit.layer.borderWidth = 1.0f;
 }
 
+/* This method is reponsible for setting up the text field delegates.. */
 - (void)setupDelegates
 {
     self.txtBookTitle.delegate = self;
@@ -99,6 +106,7 @@
     self.txtCategories.delegate = self;
 }
 
+/* This method is reponsible for setting up the navigation bar. */
 - (void)setupNavigationBar
 {
     UIBarButtonItem* rightBarButtonItemDone = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonItem]];
@@ -107,6 +115,7 @@
     
 }
 
+/* This method is reponsible for setting up the navigation bar right bar button. */
 - (UIButton *)rightBarButtonItem
 {
     UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -163,6 +172,7 @@
 }
 
 #pragma mark - Utility methods
+/* This method shows an alert if user fills some of the fields and wants to leave the page when the user presses done button. */
 - (void)donePressed
 {
     if(self.txtBookTitle.text.length > 0 || self.txtAuthor.text.length > 0 || self.txtCategories.text.length > 0 || self.txtPublisher.text.length > 0)
@@ -179,11 +189,13 @@
         [self dismissViewController];
 }
 
+/* This method dismisses the present view controller. */
 - (void)dismissViewController
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+/* This method adds the book to the library. */
 - (void)addBookToLibrary
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -194,6 +206,7 @@
     [self.manager serviceCallWithURL:url andParameters:requestParameters andRequestMethod:@"POST"];
 }
 
+/* This method checks for the mandatory fields. If not filled it turns red. */
 - (void)checkFields
 {
     NSString *fieldsMissing = @"";
@@ -211,6 +224,7 @@
     
 }
 
+/* This method throws an alert for the missing fields. */
 - (void)showFieldsAlert:(NSString *)fieldsMissing
 {
     UIAlertView *fieldsAlertView = [[UIAlertView alloc] initWithTitle:@"Required Fields"
@@ -221,6 +235,7 @@
     [fieldsAlertView show];
 }
 
+/* This method prepares the parameters that need to be submitted for adding a book to the library. */
 - (NSDictionary *)prepareParameters
 {
     NSMutableDictionary *prepareParameters = [[NSMutableDictionary alloc]init];
@@ -231,6 +246,7 @@
     return prepareParameters;
 }
 
+/* This method disables the Progress HUD when the book is loaded from the server. */
 - (void)disableProgressHUD
 {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -258,6 +274,7 @@
         [self disableProgressHUD];
         NSDictionary *data = (NSDictionary *)response;
         NSLog(@"%@",data);
+        [self.addBookDelegate bookAdded];
         [self dismissViewController];
     }
 }

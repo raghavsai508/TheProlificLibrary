@@ -12,8 +12,9 @@
 #import "ServiceManager.h"
 #import "ServiceURLProvider.h"
 #import "MBProgressHUD.h"
+#import "AlertViewController.h"
 
-@interface BookDetailViewController ()<ServiceProtocol,UIAlertViewDelegate>
+@interface BookDetailViewController ()<ServiceProtocol,UIAlertViewDelegate,AlertViewDismissProtocol>
 
 @property (weak, nonatomic) IBOutlet UILabel        *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel        *lblAuthor;
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel        *lblCategories;
 @property (weak, nonatomic) IBOutlet UILabel        *lblLastCheckedOutBy;
 @property (weak, nonatomic) IBOutlet UIButton       *btnCheckOut;
-
+@property (nonatomic, strong) AlertViewController   *alertview;
 @property (nonatomic, strong) ServiceManager        *manager;
 @property (nonatomic, strong) NSString              *name;
 
@@ -33,19 +34,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getBook];
     [self designCheckOutButton];
     [self setupNavigationBar];
-    [self getBook];
     self.checkedOutBool = NO;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 #pragma mark - UI Design and Initial Setup Methods
-
+/* This method is responsible for setting up the check out button. */
 -(void)designCheckOutButton
 {
     self.btnCheckOut.layer.cornerRadius = 10.0f;
@@ -53,6 +49,7 @@
     self.btnCheckOut.layer.borderWidth = 1.0f;
 }
 
+/* This method is responsible for setting up the navigation bar. */
 - (void)setupNavigationBar
 {
     UIBarButtonItem *rightBarButtonItemShare = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareBook)];
@@ -62,7 +59,7 @@
 
 
 #pragma mark - Utility methods
-
+/* This method is responsible for getting the book from the server. */
 - (void)getBook
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -78,6 +75,7 @@
     }
 }
 
+/* This method setups the book details. */
 - (void)showBookDetails:(NSArray *)bookArray
 {
     Book *book = [bookArray objectAtIndex:0];
@@ -88,6 +86,7 @@
     self.lblCategories.text = book.categories;
 }
 
+/* This method is responsible for sharing the book via social media. */
 - (void)shareBook
 {
     
@@ -108,6 +107,7 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
+/* This method returns the parameters for submitting it to the server. */
 - (NSDictionary *)prepareParameters
 {
     NSMutableDictionary *preparedParameters = [[NSMutableDictionary alloc]init];
@@ -115,6 +115,7 @@
     return preparedParameters;
 }
 
+/* This method is responsible for disabling the Progress HUD when the book is loaded. */
 - (void)disableProgressHUD
 {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -127,13 +128,11 @@
 #pragma mark - Action methods
 - (IBAction)checkoutBook:(id)sender
 {
-    UIAlertView *promptUsernameAlertView = [[UIAlertView alloc] initWithTitle:@"Checkout Name"
-                                                                      message:@"Please Enter Your Name"
-                                                                     delegate:self
-                                                            cancelButtonTitle:@"Cancel"
-                                                            otherButtonTitles:@"OK", nil];
-    promptUsernameAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [promptUsernameAlertView show];
+    self.alertview = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([AlertViewController class])];
+    self.alertview.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    [self.view addSubview:self.alertview.view];
+    self.alertview.alertDelegate = self;
+    [self.alertview performAnimation];
 }
 
 #pragma mark - UIAlertViewDelegate methods
@@ -165,6 +164,19 @@
 {
     NSLog(@"%@",error);
 }
+
+#pragma mark - AlertViewDismissProtocol method
+- (void)dismissAlertView:(NSInteger)buttonPressedValue withText:(NSString *)textString
+{
+    if(buttonPressedValue == 0)
+    {
+        self.checkedOutBool = YES;
+        self.name = textString;
+        [self getBook];
+    }
+    [self.alertview.view removeFromSuperview];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

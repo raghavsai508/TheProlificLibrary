@@ -8,6 +8,7 @@
 
 #import "BookListViewController.h"
 
+/* This is an extension for the BookListViewController and this file is used in test cases. */
 @interface BookListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView        *bookListTableView;

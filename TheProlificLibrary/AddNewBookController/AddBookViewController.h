@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AddBookProtocol <NSObject>
+
+- (void)bookAdded;
+
+@end
+
 @interface AddBookViewController : UIViewController
+
+@property (nonatomic, weak) id<AddBookProtocol> addBookDelegate;
 
 @end

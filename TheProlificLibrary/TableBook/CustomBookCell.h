@@ -12,8 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblBookTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblBookAuthor;
+@property (weak, nonatomic) IBOutlet UIImageView *bookImage;
+@property (weak, nonatomic) IBOutlet UIView *bookDetailsView;
 
 
-- (void)configureCell:(NSString *)bookTitle andAuthor:(NSString *)bookAuthor;
+- (void)configureCell:(NSString *)bookTitle andAuthor:(NSString *)bookAuthor andImageNum:(int)imageNum;
 
 @end

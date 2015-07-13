@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSMutableArray *requestQueue;
 @property (nonatomic, assign) SecTrustResultType trustResult;
 
-
 @end
 
 @implementation ServiceManager

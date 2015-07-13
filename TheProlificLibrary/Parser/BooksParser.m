@@ -19,6 +19,7 @@
 
 @implementation BooksParser
 
+/* This method is retreives the number of Book objects. */
 + (NSMutableArray *)getBookObjects:(NSArray *)responseBooks
 {
     NSMutableArray *booksArray = [[NSMutableArray alloc] init];
@@ -31,6 +32,7 @@
     return booksArray;
 }
 
+/* This method is reponsible for parsing the book details got from the server. */
 + (Book *)bookParser:(NSDictionary *)bookDetails
 {
     Book *book = [[Book alloc] init];
@@ -41,7 +43,6 @@
     
     if([bookDetails objectForKey:@"lastCheckedOut"] != [NSNull null])
     {
-        
         book.lastCheckedOut = [self parseDate:[bookDetails objectForKey:@"lastCheckedOut"]];
     }
     else
@@ -60,6 +61,7 @@
     return book;
 }
 
+/* This method converts date into month name, date and time format. */
 + (NSString *)parseDate:(NSString *)dateString
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

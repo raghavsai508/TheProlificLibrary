@@ -10,6 +10,7 @@
 
 @interface Book : NSObject
 
+/* These are the properties of the Book object. */
 @property (nonatomic, strong) NSString      *author;
 @property (nonatomic, strong) NSString      *categories;
 @property (nonatomic, assign) NSInteger     bookID;
