@@ -8,6 +8,8 @@
 
 #import "ServiceManager.h"
 #import "AFNetworking.h"
+#import "ServiceURLProvider.h"
+#import "SystemLevelConstants.h"
 
 @interface ServiceManager()
 
@@ -107,6 +109,12 @@
     }];
 }
 
+#pragma recently added
+- (void)getBooks
+{
+    NSString *url = [ServiceURLProvider getURLForServiceWithKey:kBooks];
+    [self serviceCallWithURL:url andParameters:nil andRequestMethod:@"GET"];
+}
 
 
 @end

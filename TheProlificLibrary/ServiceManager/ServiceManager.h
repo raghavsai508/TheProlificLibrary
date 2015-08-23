@@ -22,6 +22,7 @@
 + (ServiceManager *)defaultManager;
 
 - (void)serviceCallWithURL:(NSString *)URL andParameters:(NSDictionary *)params andRequestMethod:(NSString *)requestMethod;
+- (void)getBooks;
 
 @property (nonatomic,weak) id<ServiceProtocol> serviceDelegate;
 

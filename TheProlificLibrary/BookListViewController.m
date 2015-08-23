@@ -222,6 +222,14 @@
     self.manager.serviceDelegate = self;
     NSString *url = [ServiceURLProvider getURLForServiceWithKey:kBooks];
     [self.manager serviceCallWithURL:url andParameters:nil andRequestMethod:@"GET"];
+//    [self.manager getBooks:(void(^)(NSString *))completeResponse{
+//        self.booksListArray = [BooksParser getBookObjects:data];
+//        [self.bookTempArray addObjectsFromArray:self.booksListArray];
+//        NSLog(@"%@",data);
+//        [self.refreshControl endRefreshing];
+//        [self.bookListTableView reloadData];
+//        [self disableProgressHUD];
+//    }];
 }
 
 /* This method deletes a book when the user swipes from right to left. */
